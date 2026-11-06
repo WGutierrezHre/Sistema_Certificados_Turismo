@@ -1,0 +1,50 @@
+import { EventRequest, EventResponse, EventsListResponse } from '@/types/event';
+import config from '@/config/env';
+
+const API_BASE_URL = config.API_BASE_URL;
+
+class EventService {
+  private async makeRequest(endpoint: string, options: RequestInit): Promise<unknown> {
+    try {
+      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          ...options.headers,
+        },
+        ...options,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Request failed');
+      }
+
+      return data;
+    } catch (error) {
+      console.error('API Request failed:', error);
+      throw error;
+    }
+  }
+
+  async createEvent(eventData: EventRequest): Promise<EventResponse> {
+    return this.makeRequest('/events/addEvent', {
+      method: 'POST',
+      body: JSON.stringify(eventData),
+    }) as Promise<EventResponse>;
+  }
+
+  async getEventsByOrganisation(organisationID: string): Promise<EventsListResponse> {
+    return this.makeRequest(`/events/${organisationID}`, {
+      method: 'GET',
+    }) as Promise<EventsListResponse>;
+  }
+
+  async deleteEvent(eventId: string): Promise<{ success: boolean; message: string }> {
+    return this.makeRequest(`/events/${eventId}`, {
+      method: 'DELETE',
+    }) as Promise<{ success: boolean; message: string }>;
+  }
+}
+
+export const eventService = new EventService();

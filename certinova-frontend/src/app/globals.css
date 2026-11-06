@@ -1,0 +1,507 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* =========================================================
+   PALETA PRINCIPAL
+   Azul:     #003874
+   Amarillo: #ffde32
+   Blanco:   #ffffff
+   ========================================================= */
+
+:root {
+  /* Fondos */
+  --background: #ffffff;
+  --foreground: #003874;
+
+  /* Cards */
+  --card: #ffffff;
+  --card-foreground: #003874;
+
+  /* Popovers */
+  --popover: #ffffff;
+  --popover-foreground: #003874;
+
+  /* Color principal */
+  --primary: #003874;
+  --primary-foreground: #ffffff;
+
+  /* Color secundario */
+  --secondary: #ffde32;
+  --secondary-foreground: #003874;
+
+  /* Elementos suaves */
+  --muted: #f7f8fa;
+  --muted-foreground: #4b6078;
+
+  /* Acentos */
+  --accent: #ffde32;
+  --accent-foreground: #003874;
+
+  /* Destructivo */
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  /* Bordes e inputs */
+  --border: #dce3ea;
+  --input: #dce3ea;
+
+  /* Focus */
+  --ring: #003874;
+
+  /* Charts */
+  --chart-1: #003874;
+  --chart-2: #ffde32;
+  --chart-3: #1b5a96;
+  --chart-4: #ffd500;
+  --chart-5: #527da8;
+
+  --radius: 0.5rem;
+
+  /* Sidebar */
+  --sidebar: #003874;
+  --sidebar-foreground: #ffffff;
+
+  --sidebar-primary: #ffde32;
+  --sidebar-primary-foreground: #003874;
+
+  --sidebar-accent: #0b4c89;
+  --sidebar-accent-foreground: #ffffff;
+
+  --sidebar-border: #164f84;
+  --sidebar-ring: #ffde32;
+}
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+.dark {
+  --background: #001f40;
+  --foreground: #ffffff;
+
+  --card: #003874;
+  --card-foreground: #ffffff;
+
+  --popover: #003874;
+  --popover-foreground: #ffffff;
+
+  --primary: #ffde32;
+  --primary-foreground: #003874;
+
+  --secondary: #0b4c89;
+  --secondary-foreground: #ffffff;
+
+  --muted: #164f84;
+  --muted-foreground: #dce3ea;
+
+  --accent: #ffde32;
+  --accent-foreground: #003874;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  --border: #245d91;
+  --input: #245d91;
+
+  --ring: #ffde32;
+
+  --chart-1: #ffde32;
+  --chart-2: #ffffff;
+  --chart-3: #4f86b9;
+  --chart-4: #ffd500;
+  --chart-5: #8fb2d2;
+
+  --sidebar: #002b59;
+  --sidebar-foreground: #ffffff;
+
+  --sidebar-primary: #ffde32;
+  --sidebar-primary-foreground: #003874;
+
+  --sidebar-accent: #164f84;
+  --sidebar-accent-foreground: #ffffff;
+
+  --sidebar-border: #245d91;
+  --sidebar-ring: #ffde32;
+}
+
+/* =========================================================
+   TAILWIND THEME
+   ========================================================= */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+/* =========================================================
+   SOMBRAS PROFESIONALES
+   ========================================================= */
+
+.professional-shadow {
+  box-shadow:
+    0 1px 3px rgba(0, 56, 116, 0.1),
+    0 1px 2px rgba(0, 56, 116, 0.06);
+}
+
+.professional-shadow-lg {
+  box-shadow:
+    0 10px 15px -3px rgba(0, 56, 116, 0.12),
+    0 4px 6px -2px rgba(0, 56, 116, 0.08);
+}
+
+/* =========================================================
+   SCROLL
+   ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.btn-professional {
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+.btn-professional:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 18px rgba(0, 56, 116, 0.22);
+}
+
+/* Botón azul */
+.btn-blue {
+  background-color: #003874;
+  color: #ffffff;
+}
+
+.btn-blue:hover {
+  background-color: #002b59;
+}
+
+/* Botón amarillo */
+.btn-yellow {
+  background-color: #ffde32;
+  color: #003874;
+}
+
+.btn-yellow:hover {
+  background-color: #f5d000;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card-professional {
+  background: #ffffff;
+  border: 1px solid #dce3ea;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.card-professional:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(0, 56, 116, 0.25);
+
+  box-shadow:
+    0 10px 30px rgba(0, 56, 116, 0.12);
+}
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.focus-professional:focus {
+  outline: 2px solid #ffde32;
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   TIPOGRAFÍA
+   ========================================================= */
+
+.text-professional {
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+
+/* =========================================================
+   ANIMACIONES
+   ========================================================= */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* =========================================================
+   GRADIENTES
+   ========================================================= */
+
+.gradient-professional {
+  background: linear-gradient(
+    135deg,
+    #003874 0%,
+    #00539c 65%,
+    #ffde32 100%
+  );
+}
+
+.gradient-subtle {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f6f9fc 60%,
+    #fff9d8 100%
+  );
+}
+
+/* Fondo azul institucional */
+.gradient-blue {
+  background: linear-gradient(
+    135deg,
+    #002b59 0%,
+    #003874 50%,
+    #07549b 100%
+  );
+}
+
+/* Fondo amarillo */
+.gradient-yellow {
+  background: linear-gradient(
+    135deg,
+    #ffde32 0%,
+    #ffe75f 100%
+  );
+}
+
+/* =========================================================
+   BLOBS
+   ========================================================= */
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* =========================================================
+   GRADIENTE GENERAL
+   ========================================================= */
+
+.gradient-bg {
+  background: linear-gradient(
+    135deg,
+    #003874 0%,
+    #004b91 70%,
+    #ffde32 100%
+  );
+}
+
+/* =========================================================
+   TEXTO CON GRADIENTE
+   ========================================================= */
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    #003874 0%,
+    #00539c 55%,
+    #d8b700 100%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =========================================================
+   CLASES EXTRAS DE LA IDENTIDAD
+   ========================================================= */
+
+.bg-brand-blue {
+  background-color: #003874;
+}
+
+.bg-brand-yellow {
+  background-color: #ffde32;
+}
+
+.bg-brand-white {
+  background-color: #ffffff;
+}
+
+.text-brand-blue {
+  color: #003874;
+}
+
+.text-brand-yellow {
+  color: #ffde32;
+}
+
+.text-brand-white {
+  color: #ffffff;
+}
+
+.border-brand-blue {
+  border-color: #003874;
+}
+
+.border-brand-yellow {
+  border-color: #ffde32;
+}
+
+/* Badge institucional */
+.badge-brand {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+
+  padding: 0.35rem 0.75rem;
+
+  background-color: #ffde32;
+  color: #003874;
+
+  font-weight: 600;
+}
+
+/* Línea decorativa */
+.brand-line {
+  width: 4rem;
+  height: 4px;
+
+  border-radius: 9999px;
+
+  background-color: #ffde32;
+}
+
+/* Sección azul */
+.section-blue {
+  background-color: #003874;
+  color: #ffffff;
+}
+
+/* Sección amarilla */
+.section-yellow {
+  background-color: #ffde32;
+  color: #003874;
+}
+
+/* Link institucional */
+.link-brand {
+  color: #003874;
+
+  transition: color 0.2s ease;
+}
+
+.link-brand:hover {
+  color: #00539c;
+}

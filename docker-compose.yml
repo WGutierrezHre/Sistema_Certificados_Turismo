@@ -1,0 +1,52 @@
+services:
+
+  mongo:
+    image: mongo:7
+    container_name: certinova-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - certinova_mongo_data:/data/db
+
+  backend:
+    build:
+      context: ./certinova-backend
+    container_name: certinova-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./certinova-backend/.env
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./certinova-frontend
+    container_name: certinova-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+
+    volumes:
+      # Conecta tu VS Code con Docker
+      - ./certinova-frontend:/app
+      
+      # Evita que node_modules del PC reemplace el del contenedor
+      - /app/node_modules
+
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:5000/api
+      NEXT_PUBLIC_FRONTEND_URL: http://localhost:3000
+      NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: dfc0gtmnj
+      NEXT_PUBLIC_CLOUDINARY_API_KEY: 971465877389371
+
+      # Importante para Windows + Docker Desktop
+      WATCHPACK_POLLING: true
+
+    depends_on:
+      - backend
+
+volumes:
+  certinova_mongo_data:
